@@ -1,7 +1,5 @@
 package com.example.demo.repository;
 
-import java.util.List;
-
 import org.springframework.data.repository.CrudRepository;
 
 import com.example.demo.entity.BakingItem;
@@ -10,6 +8,6 @@ import com.example.demo.entity.BakingItem;
 // CRUD refers Create, Read, Update, Delete
 
 public interface BakingItemRepository extends CrudRepository<BakingItem, Integer> {
-    List<BakingItem> findAll();
+    // List<BakingItem> findAll();
 
 }

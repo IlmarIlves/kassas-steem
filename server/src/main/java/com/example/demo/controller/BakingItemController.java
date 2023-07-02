@@ -15,26 +15,26 @@ import com.example.demo.service.BakingItemService;
 @RestController
 @RequestMapping("/baking-items")
 public class BakingItemController {
-    private final BakingItemService bakingItemService;
+    // private final BakingItemService bakingItemService;
 
-    public BakingItemController(BakingItemService bakingItemService) {
-        this.bakingItemService = bakingItemService;
-    }
+    // public BakingItemController(BakingItemService bakingItemService) {
+    // this.bakingItemService = bakingItemService;
+    // }
 
-    @GetMapping
-    public List<BakingItem> getAllBakingItems() {
-        return bakingItemService.getAllBakingItems();
-    }
+    // @GetMapping
+    // public List<BakingItem> getAllBakingItems() {
+    // return bakingItemService.getAllBakingItems();
+    // }
 
-    @PostMapping
-    public BakingItem createBakingItem(@RequestBody BakingItem bakingItem) {
-        return bakingItemService.createBakingItem(bakingItem);
-    }
+    // @PostMapping
+    // public BakingItem createBakingItem(@RequestBody BakingItem bakingItem) {
+    // return bakingItemService.createBakingItem(bakingItem);
+    // }
 
-    @GetMapping("/{id}")
-    public BakingItem getBakingItemById(@PathVariable Integer id) {
-        return bakingItemService.getBakingItemById(id);
-    }
+    // @GetMapping("/{id}")
+    // public BakingItem getBakingItemById(@PathVariable Integer id) {
+    // return bakingItemService.getBakingItemById(id);
+    // }
 
     // Other endpoints for updating, deleting, etc.
 }

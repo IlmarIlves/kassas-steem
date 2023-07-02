@@ -7,22 +7,23 @@ import com.example.demo.entity.BakingItem;
 import com.example.demo.repository.BakingItemRepository;
 
 public class BakingItemService {
-    private final BakingItemRepository bakingItemRepository;
+    // private final BakingItemRepository bakingItemRepository;
 
-    public BakingItemService(BakingItemRepository bakingItemRepository) {
-        this.bakingItemRepository = bakingItemRepository;
-    }
+    // public BakingItemService(BakingItemRepository bakingItemRepository) {
+    // this.bakingItemRepository = bakingItemRepository;
+    // }
 
-    public List<BakingItem> getAllBakingItems() {
-        return bakingItemRepository.findAll();
-    }
+    // public List<BakingItem> getAllBakingItems() {
+    // return bakingItemRepository.findAll();
+    // }
 
-    public BakingItem createBakingItem(BakingItem bakingItem) {
-        return bakingItemRepository.save(bakingItem);
-    }
+    // public BakingItem createBakingItem(BakingItem bakingItem) {
+    // return bakingItemRepository.save(bakingItem);
+    // }
 
-    public BakingItem getBakingItemById(Integer id) {
-        return bakingItemRepository.findById(id)
-                .orElseThrow(() -> new CustomNotFoundException("BakingItem not found with id: " + id));
-    }
+    // public BakingItem getBakingItemById(Integer id) {
+    // return bakingItemRepository.findById(id)
+    // .orElseThrow(() -> new CustomNotFoundException("BakingItem not found with id:
+    // " + id));
+    // }
 }

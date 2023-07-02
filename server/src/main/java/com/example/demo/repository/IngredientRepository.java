@@ -10,5 +10,4 @@ import com.example.demo.entity.Ingredient;
 // CRUD refers Create, Read, Update, Delete
 
 public interface IngredientRepository extends CrudRepository<Ingredient, Integer> {
-    List<Ingredient> findAll();
 }
