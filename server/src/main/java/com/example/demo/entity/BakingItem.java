@@ -7,8 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
-// import javax.persistence.CascadeType;
-
 import java.util.List;
 
 @Entity
@@ -23,6 +21,10 @@ public class BakingItem {
     private List<Ingredient> ingredients;
 
     // Getters and setters
+
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
