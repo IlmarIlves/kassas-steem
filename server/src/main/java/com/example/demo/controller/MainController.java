@@ -42,39 +42,6 @@ public class MainController {
         return "Saved";
     }
 
-    @PostMapping(path = "/add-baking-item") // Map ONLY POST Requests
-    public @ResponseBody String addNewBakingItem(@RequestParam String name) {
-
-        BakingItem bakingItem = new BakingItem();
-        bakingItem.setName(name);
-
-        // Create Ingredients and associate them with the BakingItem
-        Ingredient ingredient1 = new Ingredient();
-        ingredient1.setName("Ingredient 1");
-        ingredient1.setBakingItem(bakingItem);
-
-        Ingredient ingredient2 = new Ingredient();
-        ingredient2.setName("Ingredient 2");
-        ingredient2.setBakingItem(bakingItem);
-
-        Ingredient ingredient3 = new Ingredient();
-        ingredient3.setName("Ingredient 3");
-        ingredient3.setBakingItem(bakingItem);
-
-        // Set the Ingredients on the BakingItem
-        bakingItem.setIngredients(Arrays.asList(ingredient1, ingredient2, ingredient3));
-
-        // Save the BakingItem
-        bakingItemRepository.save(bakingItem);
-        return "Saved";
-    }
-
-    @GetMapping(path = "/baking-items")
-    public @ResponseBody Iterable<BakingItem> getAllBakingItems() {
-        // This returns a JSON or XML with the Registrys
-        return bakingItemRepository.findAll();
-    }
-
     @GetMapping(path = "/ingredients")
     public @ResponseBody Iterable<Ingredient> getAllIngredients() {
         // This returns a JSON or XML with the Registrys
