@@ -1,30 +1,28 @@
 package com.example.demo.service;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.demo.CustomNotFoundException;
 import com.example.demo.entity.Ingredient;
 import com.example.demo.repository.IngredientRepository;
 
+@Service
 public class IngredientService {
-    // private final IngredientRepository ingredientRepository;
+    @Autowired
+    private final IngredientRepository ingredientRepository;
 
-    // public IngredientService(IngredientRepository ingredientRepository) {
-    // this.ingredientRepository = ingredientRepository;
-    // }
+    public IngredientService(IngredientRepository ingredientRepository) {
+        this.ingredientRepository = ingredientRepository;
+    }
 
-    // public List<Ingredient> getAllIngredients() {
-    // return ingredientRepository.findAll();
-    // }
+    public Ingredient saveIngredient(Ingredient ingredient) {
+        return ingredientRepository.save(ingredient);
+    }
 
-    // public Ingredient createIngredient(Ingredient ingredient) {
-    // return ingredientRepository.save(ingredient);
-    // }
-
-    // public Ingredient getIngredientById(Integer id) {
-    // return ingredientRepository.findById(id)
-    // .orElseThrow(() -> new CustomNotFoundException("Ingredient not found with id:
-    // " + id));
-    // }
+    public @ResponseBody Iterable<Ingredient> getAll() {
+        // This returns a JSON or XML with the Registrys
+        return ingredientRepository.findAll();
+    }
 
 }

@@ -55,7 +55,7 @@ public class BakingItemController {
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<BakingItem> getAllBakingItems() {
         // This returns a JSON or XML with the Registrys
-        return bakingItemService.getAllBakingItems();
+        return bakingItemService.getAll();
     }
 
 }

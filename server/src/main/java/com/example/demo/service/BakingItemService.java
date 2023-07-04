@@ -20,7 +20,7 @@ public class BakingItemService {
         return bakingItemRepository.save(bakingItem);
     }
 
-    public @ResponseBody Iterable<BakingItem> getAllBakingItems() {
+    public @ResponseBody Iterable<BakingItem> getAll() {
         // This returns a JSON or XML with the Registrys
         return bakingItemRepository.findAll();
     }
