@@ -1,8 +1,25 @@
 <script setup>
+import Home from './components/Home.vue'
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
-import { ref } from 'vue';
 import axios from 'axios';
+import { ref, computed } from 'vue'
+
+
+const routes = {
+  '/': HelloWorld,
+  '/home': Home
+}
+
+const currentPath = ref(window.location.hash)
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'] || NotFound
+})
 
 const fetchData = async () => {
   try {
@@ -19,17 +36,9 @@ fetchData();
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  <a href="#/">Home</a> |
+  <a href="#/home">About</a> |
+  <component :is="currentView" />
 </template>
 
 <style scoped>
