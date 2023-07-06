@@ -29,8 +29,8 @@ fetchData();
         <div>
             <ul>
                 <li v-for="item in bakingData" :key="item.id">
-                    <router-link :to="`#/details/${item.id}`">{{ item.name }}</router-link>
-                    <!-- <a :href="`#/details/${item.id}`">{{ item.name }}</a> -->
+                    <router-link :to="`/details/${item.id}`">{{ item.name }}</router-link>
+
                 </li>
             </ul>
         </div>
