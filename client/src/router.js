@@ -3,25 +3,24 @@ import BakingListView from './components/BakingListView.vue';
 import BakingDetailsView from './components/BakingDetailsView.vue';
 import BakingStatisticsView from './components/BakingStatisticsView.vue';
 
-const routes = [  
-    {
-      path: '/',
-      name: 'BakingListView',
-      component: BakingListView,
-    },
-    {
-      path: '/details/:id',
-      name: 'BakingDetailsView',
-      component: BakingDetailsView,
-      props: true, // Enable passing route parameters as props
-  
-    },
-    {
-      path: '/statistsics',
-      name: 'BakingStatisticsView',
-      component: BakingStatisticsView,
-    },
-  ];
+const routes = [
+  {
+    path: '/',
+    name: 'BakingListView',
+    component: BakingListView,
+  },
+  {
+    path: '/details/:id',
+    name: 'BakingDetailsView',
+    component: BakingDetailsView,
+    props: true,
+  },
+  {
+    path: '/statistics',
+    name: 'BakingStatisticsView',
+    component: BakingStatisticsView,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),

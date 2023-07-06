@@ -39,10 +39,13 @@ fetchData();
 </script>
 
 <template>
-  <a href="#/">Home</a> |
-  <a href="#/details/:id">Details</a> |
-  <a href="#/statistics">Statistics</a> |
-  <component :is="currentView" />
+  <div>
+
+    <router-link to="/">Home</router-link> |
+    <router-link to="/details/:id">Details</router-link> |
+    <router-link to="/statistics">Statistics</router-link> |
+    <router-view></router-view>
+  </div>
 </template>
 
 <style scoped>

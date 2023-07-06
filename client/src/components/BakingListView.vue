@@ -25,10 +25,12 @@ fetchData();
     <div class="home">
         <h1 class="home-title">Welcome to the baking list</h1>
         <p class="home-content">This is the content of the baking list.</p>
+
         <div>
             <ul>
                 <li v-for="item in bakingData" :key="item.id">
-                    <a :href="`#/details/${item.id}`">{{ item.name }}</a>
+                    <router-link :to="`#/details/${item.id}`">{{ item.name }}</router-link>
+                    <!-- <a :href="`#/details/${item.id}`">{{ item.name }}</a> -->
                 </li>
             </ul>
         </div>
