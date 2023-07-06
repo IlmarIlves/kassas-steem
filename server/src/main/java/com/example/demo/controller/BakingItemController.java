@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import java.util.Arrays;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.entity.BakingItem;
 import com.example.demo.entity.Ingredient;
 import com.example.demo.service.BakingItemService;
+
+import jakarta.persistence.criteria.CriteriaBuilder.In;
 
 @RestController
 @RequestMapping("/api/baking-items")
@@ -56,6 +60,16 @@ public class BakingItemController {
     public @ResponseBody Iterable<BakingItem> getAllBakingItems() {
         // This returns a JSON or XML with the Registrys
         return bakingItemService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<BakingItem> getBakingItemById(@PathVariable Long id) {
+        BakingItem bakingItem = bakingItemService.getBakingItemById(id);
+        if (bakingItem != null) {
+            return ResponseEntity.ok(bakingItem);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

@@ -25,4 +25,8 @@ public class BakingItemService {
         return bakingItemRepository.findAll();
     }
 
+    public BakingItem getBakingItemById(Long id) {
+        return bakingItemRepository.findById(id).orElse(null);
+    }
+
 }

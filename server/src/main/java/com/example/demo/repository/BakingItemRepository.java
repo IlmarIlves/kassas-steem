@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.repository.CrudRepository;
 
 import com.example.demo.entity.BakingItem;
@@ -9,5 +11,6 @@ import com.example.demo.entity.BakingItem;
 
 public interface BakingItemRepository extends CrudRepository<BakingItem, Integer> {
     // List<BakingItem> findAll();
+    Optional<BakingItem> findById(Long id);
 
 }
