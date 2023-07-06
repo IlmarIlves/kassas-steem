@@ -4,5 +4,5 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.example.demo.entity.Ingredient;
 
-public interface IngredientRepository extends CrudRepository<Ingredient, Integer> {
+public interface IngredientRepository extends CrudRepository<Ingredient, Long> {
 }
