@@ -1,14 +1,16 @@
 <script setup>
-import Home from './components/Home.vue'
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import axios from 'axios';
+import BakingListView from './components/BakingListView.vue'
+import BakingDetailsView from './components/BakingDetailsView.vue'
+import BakingStatisticsView from './components/BakingStatisticsView.vue'
+import NotFound from './components/NotFound.vue'
 import { ref, computed } from 'vue'
+import axios from 'axios';
 
 
 const routes = {
-  '/': HelloWorld,
-  '/home': Home
+  '/': BakingListView,
+  '/details/:id': BakingDetailsView,
+  '/statistics': BakingStatisticsView
 }
 
 const currentPath = ref(window.location.hash)
@@ -33,11 +35,13 @@ const fetchData = async () => {
 };
 
 fetchData();
+
 </script>
 
 <template>
   <a href="#/">Home</a> |
-  <a href="#/home">About</a> |
+  <a href="#/details/:id">Details</a> |
+  <a href="#/statistics">Statistics</a> |
   <component :is="currentView" />
 </template>
 
