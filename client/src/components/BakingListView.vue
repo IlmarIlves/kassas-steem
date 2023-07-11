@@ -4,6 +4,7 @@ import axios from 'axios';
 
 // Define a reactive variable to store the response data
 const bakingData = ref();
+const bakingItemName = ref('');
 
 const fetchData = async () => {
     try {
@@ -33,9 +34,10 @@ const postData = async (name) => {
         });
 }
 
+// wait for html to load
 document.addEventListener('DOMContentLoaded', function () {
 
-    document.getElementById('postButton').addEventListener('click', () => postData('testing'));
+    document.getElementById('postButton').addEventListener('click', () => postData(bakingItemName.value));
 
 
 });
@@ -48,7 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
         <h1 class="home-title">Welcome to the baking list</h1>
         <p class="home-content">This is the content of the baking list.</p>
 
-        <button id="postButton">Post Data</button>
+        <div>
+            <input type="text" v-model="bakingItemName" />
+            <p>Entered Name: {{ bakingItemName }}</p>
+            <button id="postButton">Post Data</button>
+        </div>
         <div>
             <ul>
                 <li v-for="item in bakingData" :key="item.id">
