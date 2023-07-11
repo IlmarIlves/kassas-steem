@@ -17,7 +17,6 @@ const fetchData = async () => {
         console.error(error);
     }
 };
-
 fetchData();
 </script>
 
@@ -25,19 +24,22 @@ fetchData();
     <div class="home">
         <h1 class="home-title">Welcome to the baking stats</h1>
         <p class="home-content">This is the content of the baking stats.</p>
-    </div>
 
-    <div>
-        <ul>
-            <li v-for="item in bakingData" :key="item.id">
-                {{ item.name }}
-                <ul>
-                    <li v-for="ingredient in item.ingredients" :key="ingredient.id">
-                        {{ ingredient }}
-                    </li>
-                </ul>
-            </li>
-        </ul>
+        <div>
+            <ul>
+                <li v-for="item in bakingData" :key="item.id">
+                    <span>{{ item.name }}</span>
+                    <ul>
+
+                        <li v-for="ingredient in item.ingredients" :key="ingredient.id">
+                            <span>{{ ingredient.name }}</span>
+
+                        </li>
+                    </ul>
+
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
   

@@ -3,7 +3,6 @@
   <div>
 
     <router-link to="/">Home</router-link> |
-    <router-link to="/details/:id">Details</router-link> |
     <router-link to="/statistics">Statistics</router-link> |
     <router-view></router-view>
   </div>
