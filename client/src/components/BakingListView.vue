@@ -16,8 +16,30 @@ const fetchData = async () => {
         console.error(error);
     }
 };
-
 fetchData();
+
+const postData = async (name) => {
+    const formData = new URLSearchParams();
+    formData.append('name', name);
+
+
+    axios
+        .post('http://localhost:8080/api/baking-items/add', formData)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.getElementById('postButton').addEventListener('click', () => postData('testing'));
+
+
+});
+
 </script>
 
 
@@ -26,6 +48,7 @@ fetchData();
         <h1 class="home-title">Welcome to the baking list</h1>
         <p class="home-content">This is the content of the baking list.</p>
 
+        <button id="postButton">Post Data</button>
         <div>
             <ul>
                 <li v-for="item in bakingData" :key="item.id">
@@ -34,6 +57,7 @@ fetchData();
                 </li>
             </ul>
         </div>
+
     </div>
 </template>
   

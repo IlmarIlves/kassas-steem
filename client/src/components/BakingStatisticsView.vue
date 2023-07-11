@@ -13,7 +13,6 @@ const fetchData = async () => {
             name: item.name,
             ingredients: item.ingredients
         }));
-        console.error(response.data);
 
     } catch (error) {
         console.error(error);

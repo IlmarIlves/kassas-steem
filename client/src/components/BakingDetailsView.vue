@@ -13,14 +13,18 @@ const bakingData = ref();
 const fetchData = async () => {
     try {
         const response = await axios.get(`http://localhost:8080/api/baking-items/${lastParam}`);
-        bakingData.value = response.data;
-        console.error(response.data);
+        bakingData.value = {
+            id: response.data.id,
+            name: response.data.name,
+            ingredients: response.data.ingredients
+        };
 
     } catch (error) {
         console.error(error);
     }
 };
 fetchData();
+
 </script>
 
 <template>
@@ -28,8 +32,18 @@ fetchData();
         <h1 class="home-title">Welcome to the baking details</h1>
         <p class="home-content">This is the content of the baking details.</p>
 
+        <!-- TODO: fix errors & warnings here -->
         <div>
-            <span>{{ bakingData }}</span>
+            <span>Name: {{ bakingData.name }}</span>
+            <ul>
+
+                <li v-for="ingredient in bakingData.ingredients" :key="ingredient.id">
+                    <div>
+                        <p>Ingredient name: {{ ingredient.name }}</p>
+                        <p> Quantity: {{ ingredient.quantity }}</p>
+                    </div>
+                </li>
+            </ul>
 
         </div>
     </div>
