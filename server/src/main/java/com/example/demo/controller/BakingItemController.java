@@ -15,8 +15,6 @@ import com.example.demo.entity.BakingItem;
 import com.example.demo.entity.Ingredient;
 import com.example.demo.service.BakingItemService;
 
-import jakarta.persistence.criteria.CriteriaBuilder.In;
-
 @RestController
 @RequestMapping("/api/baking-items")
 public class BakingItemController {

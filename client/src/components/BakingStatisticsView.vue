@@ -13,6 +13,8 @@ const fetchData = async () => {
             name: item.name,
             ingredients: item.ingredients
         }));
+        console.error(response.data);
+
     } catch (error) {
         console.error(error);
     }
@@ -23,17 +25,17 @@ fetchData();
 <template>
     <div class="home">
         <h1 class="home-title">Welcome to the baking stats</h1>
-        <p class="home-content">This is the content of the baking stats.</p>
 
         <div>
             <ul>
                 <li v-for="item in bakingData" :key="item.id">
-                    <span>{{ item.name }}</span>
+                    <span>Item: {{ item.name }}</span>
                     <ul>
-
                         <li v-for="ingredient in item.ingredients" :key="ingredient.id">
-                            <span>{{ ingredient.name }}</span>
-
+                            <div>
+                                <p>Name: {{ ingredient.name }}</p>
+                                <p> Quantity: {{ ingredient.quantity }}</p>
+                            </div>
                         </li>
                     </ul>
 
