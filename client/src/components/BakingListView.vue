@@ -50,42 +50,46 @@ document.addEventListener('DOMContentLoaded', function () {
         <h1 class="home-title">Welcome to the baking list</h1>
         <p class="home-content">This is the content of the baking list.</p>
 
-        <div>
+        <div class="input-container">
             <input type="text" v-model="bakingItemName" />
-            <p>Entered Name: {{ bakingItemName }}</p>
             <button id="postButton">Post Data</button>
         </div>
+
         <div>
-            <ul>
+            <ul class="baking-list">
                 <li v-for="item in bakingData" :key="item.id">
                     <router-link :to="`/details/${item.id}`">{{ item.name }}</router-link>
-
                 </li>
             </ul>
         </div>
-
     </div>
 </template>
   
-  
-<style scoped>
+<style>
 .home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    margin: 20px;
 }
 
 .home-title {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 1rem;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .home-content {
-    font-size: 1.2rem;
-    color: #666;
+    margin-bottom: 10px;
+}
+
+.input-container {
+    margin-bottom: 10px;
+}
+
+.baking-list {
+    list-style: none;
+    padding: 0;
+}
+
+.baking-list li {
+    margin-bottom: 5px;
 }
 </style>
   

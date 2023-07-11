@@ -32,43 +32,45 @@ fetchData();
         <h1 class="home-title">Welcome to the baking details</h1>
         <p class="home-content">This is the content of the baking details.</p>
 
-        <!-- TODO: fix errors & warnings here -->
-        <div>
+        <div class="details-container">
             <span>Name: {{ bakingData.name }}</span>
-            <ul>
-
+            <ul class="ingredient-list">
                 <li v-for="ingredient in bakingData.ingredients" :key="ingredient.id">
-                    <div>
+                    <div class="ingredient-details">
                         <p>Ingredient name: {{ ingredient.name }}</p>
-                        <p> Quantity: {{ ingredient.quantity }}</p>
+                        <p>Quantity: {{ ingredient.quantity }}</p>
                     </div>
                 </li>
             </ul>
-
         </div>
     </div>
 </template>
   
-
-  
-<style scoped>
+<style>
 .home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    margin: 20px;
 }
 
 .home-title {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 1rem;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 .home-content {
-    font-size: 1.2rem;
-    color: #666;
+    margin-bottom: 10px;
+}
+
+.details-container {
+    margin-bottom: 10px;
+}
+
+.ingredient-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ingredient-details {
+    margin-bottom: 5px;
 }
 </style>
   

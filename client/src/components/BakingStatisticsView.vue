@@ -25,49 +25,51 @@ fetchData();
     <div class="home">
         <h1 class="home-title">Welcome to the baking stats</h1>
 
-        <div>
-            <ul>
+        <div class="stats-container">
+            <ul class="item-list">
                 <li v-for="item in bakingData" :key="item.id">
                     <span>Item: {{ item.name }}</span>
-                    <ul>
+                    <ul class="ingredient-list">
                         <li v-for="ingredient in item.ingredients" :key="ingredient.id">
-                            <div>
+                            <div class="ingredient-details">
                                 <p>Name: {{ ingredient.name }}</p>
-                                <p> Quantity: {{ ingredient.quantity }}</p>
+                                <p>Quantity: {{ ingredient.quantity }}</p>
                             </div>
                         </li>
                     </ul>
-
                 </li>
             </ul>
         </div>
     </div>
 </template>
   
-<script>
-export default {
-    name: 'Home',
-};
-</script>
-  
-<style scoped>
+<style>
 .home {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    margin: 20px;
 }
 
 .home-title {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 1rem;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.home-content {
-    font-size: 1.2rem;
-    color: #666;
+.stats-container {
+    margin-bottom: 10px;
+}
+
+.item-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ingredient-list {
+    list-style: none;
+    padding: 0;
+    margin-left: 20px;
+}
+
+.ingredient-details {
+    margin-bottom: 5px;
 }
 </style>
   
