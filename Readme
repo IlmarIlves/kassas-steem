@@ -18,10 +18,11 @@
 1. Clone the repository: `git clone https://github.com/IlmarIlves/kassas-steem.git`
 2. Change to the project directory: `cd kassasusteem`
 3. Install the front-end dependencies in client: `npm install`
-4. Add local machine server url, password & username configurations to application.properties,
-5. Run command in project root server direcotry: `.\gradlew.bat bootRun`
-6. Start the front-end development server: Run `npm run dev` in the project root directory.
-7. Access the application: Open your web browser and navigate to the ip result of the previous command
+4. Add local machine server url, password & username configurations to application.properties (change only the 3306/kassasusteem in the url, 3306 is the port and kassasusteem is the db name),
+5. If the db is not created yet, then create it
+6. Run command in project root server direcotry: `.\gradlew.bat bootRun`
+7. Start the front-end development server: Run `npm run dev` in the project root directory.
+8. Access the application: Open your web browser and navigate to the ip result of the previous command
 
 ## Usage
 
