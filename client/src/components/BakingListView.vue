@@ -1,10 +1,13 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 // Define a reactive variable to store the response data
 const bakingData = ref();
 const bakingItemName = ref('');
+const ingredients = ref([
+    { name: '', quantity: '' }
+]);
 
 const fetchData = async () => {
     try {
@@ -19,31 +22,36 @@ const fetchData = async () => {
 };
 fetchData();
 
-const postData = async (name, ingredient, quantity) => {
-    const formData = new URLSearchParams();
-    formData.append('name', name,);
-    formData.append('ingredient', ingredient);
-    formData.append('quantity', quantity);
+const addIngredient = () => {
+    ingredients.value.push({ name: '', quantity: '' });
+};
+
+const removeIngredient = (index) => {
+    ingredients.value.splice(index, 1);
+};
+
+const postData = async () => {
+    const data = {
+        name: bakingItemName.value,
+        ingredients: ingredients.value
+    };
 
     axios
-        .post('http://localhost:8080/api/baking-items/add', formData)
+        .post('http://localhost:8080/api/baking-items/add', data)
         .then(response => {
             console.log(response.data);
         })
         .catch(error => {
             console.error(error);
         });
-}
+};
 
-// wait for html to load
-document.addEventListener('DOMContentLoaded', function () {
-
-    document.getElementById('postButton').addEventListener('click', () => postData(bakingItemName.value, 'do', 69));
-
-
+// wait for DOMContentLoaded event
+onMounted(() => {
+    document.getElementById('postButton').addEventListener('click', postData);
 });
-
 </script>
+
 
 
 <template>
@@ -53,8 +61,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         <div class="input-container">
             <input type="text" v-model="bakingItemName" />
-            <button id="postButton">Post Data</button>
         </div>
+        <div class="ingredient-section">
+            <h2>Ingredients</h2>
+            <div v-for="(ingredient, index) in ingredients" :key="index" class="ingredient-item">
+                <input type="text" v-model="ingredient.name" :placeholder="`Ingredient ${index + 1} Name`" />
+                <input type="text" v-model="ingredient.quantity" :placeholder="`Ingredient ${index + 1} Quantity`" />
+                <button @click="removeIngredient(index)">Remove</button>
+            </div>
+            <button @click="addIngredient">Add Ingredient</button>
+        </div>
+        <button id="postButton">Post Data</button>
 
         <div>
             <ul class="baking-list">
