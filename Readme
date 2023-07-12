@@ -1,0 +1,41 @@
+## Technologies Used
+
+- Front-end: Vue.js, HTML, CSS
+- Back-end: Java, Spring Boot, MySQL
+- Database: MySQL
+- HTTP Client: Axios
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (https://nodejs.org)
+- Java Development Kit (JDK) (https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+- MySQL Server (https://www.mysql.com)
+
+### Installation
+
+1. Clone the repository: `git clone https://github.com/IlmarIlves/kassas-steem.git`
+2. Change to the project directory: `cd kassasusteem`
+3. Install the front-end dependencies in client: `npm install`
+4. Add local machine server url, password & username configurations to application.properties,
+5. Run command in project root server direcotry: `.\gradlew.bat bootRun`
+6. Start the front-end development server: Run `npm run dev` in the project root directory.
+7. Access the application: Open your web browser and navigate to the ip result of the previous command
+
+## Usage
+
+- Add new baking items by providing a name and the associated ingredients.
+- View the list of baking items on the home page.
+- Click on a baking item to view its details, including the ingredients.
+- Use the search bar to search for specific baking items.
+- Use the filters to refine the displayed baking items based on quantity, name, or other criteria.
+- Click on the column headers in the baking list to sort the items in ascending or descending order.
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvement, please create a new issue or submit a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
