@@ -7,7 +7,8 @@ const ingredientsData = ref([]);
 const fetchData = async (order) => {
     try {
         const response = await axios.get(`http://localhost:8080/api/ingredients/order/${order}`);
-        ingredientsData.value = response.data.map(item => ({
+        const mergedIngredients = mergeIngredientsByName(response.data);
+        ingredientsData.value = mergedIngredients.map(item => ({
             id: item.id,
             name: item.name,
             quantity: item.quantity
@@ -15,6 +16,27 @@ const fetchData = async (order) => {
     } catch (error) {
         console.error(error);
     }
+};
+
+const mergeIngredientsByName = (ingredients) => {
+    const mergedIngredients = [];
+    const ingredientMap = new Map();
+
+    for (const ingredient of ingredients) {
+        if (ingredientMap.has(ingredient.name)) {
+            // Ingredient with the same name already exists, update its quantity
+            const existingIngredient = ingredientMap.get(ingredient.name);
+            existingIngredient.quantity += ingredient.quantity;
+        } else {
+            // New ingredient, add it to the map
+            ingredientMap.set(ingredient.name, ingredient);
+        }
+    }
+
+    // Convert the map values to an array
+    mergedIngredients.push(...ingredientMap.values());
+
+    return mergedIngredients;
 };
 </script>
 
