@@ -11,6 +11,7 @@ const ingredients = ref([
     { name: '', quantity: '' }
 ]);
 
+
 const fetchData = async () => {
     try {
         const response = await axios.get('http://localhost:8080/api/baking-items/all');
@@ -33,22 +34,29 @@ const removeIngredient = (index) => {
 };
 
 const postData = async () => {
-    if (ingredients.value.length >= 3) {
-        const data = {
-            name: bakingItemName.value,
-            ingredients: ingredients.value
-        };
+    // Validate ingredient quantities
+    const areQuantitiesValid = ingredients.value.every(ingredient => ingredient.quantity >= 0);
 
-        axios
-            .post('http://localhost:8080/api/baking-items/add', data)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+    if (areQuantitiesValid) {
+        if (ingredients.value.length >= 3) {
+            const data = {
+                name: bakingItemName.value,
+                ingredients: ingredients.value
+            };
+
+            axios
+                .post('http://localhost:8080/api/baking-items/add', data)
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        } else {
+            console.log('Please provide exactly three ingredients.');
+        }
     } else {
-        console.log('Please provide exactly three ingredients.');
+        console.log('Quantity must be a positive number for all ingredients.');
     }
 };
 
@@ -72,7 +80,9 @@ onMounted(() => {
             <h2>Ingredients</h2>
             <div v-for="(ingredient, index) in ingredients" :key="index" class="ingredient-item">
                 <input type="text" v-model="ingredient.name" :placeholder="`Ingredient ${index + 1} Name`" />
-                <input type="text" v-model="ingredient.quantity" :placeholder="`Ingredient ${index + 1} Quantity`" />
+                <input type="number" v-model="ingredient.quantity" :placeholder="`Ingredient ${index + 1} Quantity`"
+                    min="0" />
+
                 <button @click="removeIngredient(index)">Remove</button>
             </div>
             <button @click="addIngredient">Add Ingredient</button>
