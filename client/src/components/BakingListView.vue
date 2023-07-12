@@ -19,10 +19,11 @@ const fetchData = async () => {
 };
 fetchData();
 
-const postData = async (name) => {
+const postData = async (name, ingredient, quantity) => {
     const formData = new URLSearchParams();
-    formData.append('name', name);
-
+    formData.append('name', name,);
+    formData.append('ingredient', ingredient);
+    formData.append('quantity', quantity);
 
     axios
         .post('http://localhost:8080/api/baking-items/add', formData)
@@ -37,7 +38,7 @@ const postData = async (name) => {
 // wait for html to load
 document.addEventListener('DOMContentLoaded', function () {
 
-    document.getElementById('postButton').addEventListener('click', () => postData(bakingItemName.value));
+    document.getElementById('postButton').addEventListener('click', () => postData(bakingItemName.value, 'do', 69));
 
 
 });
@@ -80,6 +81,9 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 
 .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 10px;
 }
 

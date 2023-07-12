@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,28 +27,23 @@ public class BakingItemController {
     }
 
     @PostMapping(path = "/add")
-    public @ResponseBody String addNewBakingItem(@RequestParam String name) {
+    public @ResponseBody String addNewBakingItem(@RequestParam String name,
+            @RequestParam List<Ingredient> ingredients) {
         BakingItem bakingItem = new BakingItem();
         bakingItem.setName(name);
 
         // Create Ingredients and associate them with the BakingItem
-        Ingredient ingredient1 = new Ingredient();
-        ingredient1.setName("Ingredient 1");
-        ingredient1.setQuantity(900);
-        ingredient1.setBakingItem(bakingItem);
-
-        Ingredient ingredient2 = new Ingredient();
-        ingredient2.setName("Ingredient 2");
-        ingredient2.setQuantity(3);
-        ingredient2.setBakingItem(bakingItem);
-
-        Ingredient ingredient3 = new Ingredient();
-        ingredient3.setName("Ingredient 3");
-        ingredient2.setQuantity(12);
-        ingredient3.setBakingItem(bakingItem);
+        List<Ingredient> ingredientList = new ArrayList<>();
+        for (Ingredient ingredientProp : ingredients) {
+            Ingredient ingredient = new Ingredient();
+            ingredient.setName(ingredientProp.getName());
+            ingredient.setQuantity(ingredientProp.getQuantity());
+            ingredient.setBakingItem(bakingItem);
+            ingredientList.add(ingredient);
+        }
 
         // Set the Ingredients on the BakingItem
-        bakingItem.setIngredients(Arrays.asList(ingredient1, ingredient2));
+        bakingItem.setIngredients(ingredientList);
 
         // Save the BakingItem
         bakingItemService.saveBakingItem(bakingItem);
