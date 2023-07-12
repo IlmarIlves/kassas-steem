@@ -33,7 +33,7 @@ const removeIngredient = (index) => {
 };
 
 const postData = async () => {
-    if (ingredients.value.length === 3) {
+    if (ingredients.value.length >= 3) {
         const data = {
             name: bakingItemName.value,
             ingredients: ingredients.value
