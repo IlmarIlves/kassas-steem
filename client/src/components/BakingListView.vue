@@ -3,9 +3,11 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 // Define a reactive variable to store the response data
-const bakingData = ref();
+const bakingData = ref([]);
 const bakingItemName = ref('');
 const ingredients = ref([
+    { name: '', quantity: '' },
+    { name: '', quantity: '' },
     { name: '', quantity: '' }
 ]);
 
@@ -31,19 +33,23 @@ const removeIngredient = (index) => {
 };
 
 const postData = async () => {
-    const data = {
-        name: bakingItemName.value,
-        ingredients: ingredients.value
-    };
+    if (ingredients.value.length === 3) {
+        const data = {
+            name: bakingItemName.value,
+            ingredients: ingredients.value
+        };
 
-    axios
-        .post('http://localhost:8080/api/baking-items/add', data)
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+        axios
+            .post('http://localhost:8080/api/baking-items/add', data)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    } else {
+        console.log('Please provide exactly three ingredients.');
+    }
 };
 
 // wait for DOMContentLoaded event

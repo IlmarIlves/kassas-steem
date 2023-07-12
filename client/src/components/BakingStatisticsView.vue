@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 // Define a reactive variable to store the response data
-const bakingData = ref();
+const bakingData = ref([]);
 
 const fetchData = async () => {
     try {
@@ -22,23 +22,22 @@ fetchData();
 </script>
 
 <template>
-    <div class="home">
-        <h1 class="home-title">Welcome to the baking stats</h1>
+    <div class="statistics">
+        <h1 class="statistics-title">Baking Statistics</h1>
 
-        <div class="stats-container">
-            <ul class="item-list">
-                <li v-for="item in bakingData" :key="item.id">
-                    <span>Item: {{ item.name }}</span>
-                    <ul class="ingredient-list">
-                        <li v-for="ingredient in item.ingredients" :key="ingredient.id">
-                            <div class="ingredient-details">
-                                <p>Name: {{ ingredient.name }}</p>
-                                <p>Quantity: {{ ingredient.quantity }}</p>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+        <div v-if="bakingData.length > 0">
+            <div class="statistics-item" v-for="item in bakingData" :key="item.id">
+                <h2>{{ item.name }}</h2>
+                <ul>
+                    <li v-for="ingredient in item.ingredients" :key="ingredient.id">
+                        <p>{{ ingredient.name }}: {{ ingredient.quantity }}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div v-else>
+            <p>No baking items available.</p>
         </div>
     </div>
 </template>

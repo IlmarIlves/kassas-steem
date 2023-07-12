@@ -8,7 +8,7 @@ const url = window.location.href;
 const lastParam = url.split("/").slice(-1)[0];
 
 // Define a reactive variable to store the response data
-const bakingData = ref();
+const bakingData = ref([]);
 
 const fetchData = async () => {
     try {
